@@ -6,3 +6,4 @@
   vars:
     root_ssh_keys:
       - {name: "strangeman", key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfO0uAvjepPMDyAOnUwok1jOwhjZlGLgeoGLDnKDznzbtSj58Ly+XELmuQbPKvxXv/bdv7w+/QiiuapF4rtW254BARUM9nDJnEOgwL/hlvo3bJdjVt5f/wJJnvUC9h02ClrrdSxElGusdMUgyD2ajfvMKP0Dd/naPe6/l22YkeBJfm7S+VX5PFPy7Je2xgOGRIIPfBSQHlk8Icyrlri0A7Dm+WZgYyil/vZ8ljOPO+96rqbnQ7Wgq9rQKp3p+J0I/f4qJDYIiyttzSlHhm77Hq9VXWl/wnQB2ERf8SPj9yXpHrhyXE1NC00dRzOno2q0FweZ0LQ9tOGpVnZNlySLtT strangeman"}
+    apt_proxy_line: ""

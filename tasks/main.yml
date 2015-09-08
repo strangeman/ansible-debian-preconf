@@ -2,7 +2,7 @@
 # tasks file for debian-preconf
 
 - name: add apt proxy settings
-  lineinfile: "dest=/etc/apt/apt.conf.d/01proxy create=yes line='Acquire::http::Proxy \"http://apt-cacher.local.solnce.ru:3128/\";'"
+  lineinfile: "dest=/etc/apt/apt.conf.d/01proxy create=yes line='{{ apt_proxy_line }}'"
 
 - name: update apt cache
   apt: update_cache=yes cache_valid_time=3600
