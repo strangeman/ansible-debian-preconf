@@ -7,7 +7,7 @@ Requirements
 ------------
 
 - Debian 6/7/8
-- Should work with Ubuntu (but not tested)
+- Should work with Ubuntu
 
 Role Variables
 --------------
