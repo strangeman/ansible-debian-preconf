@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
     roles: 
-      - debian-preconf
+      - ansible-debian-preconf
     tags: debian-preconf
     vars:
       root_ssh_keys:
