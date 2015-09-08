@@ -1,0 +1,7 @@
+---
+# handlers file for debian-preconf
+- name: localegen
+  command: /usr/sbin/locale-gen
+
+- name: update-timezone
+  command: /usr/sbin/dpkg-reconfigure -f noninteractive tzdata
