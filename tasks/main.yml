@@ -2,7 +2,7 @@
 # tasks file for debian-preconf
 
 - name: add apt proxy settings
-  lineinfile: "dest=/etc/apt/apt.conf.d/01proxy create=yes line='{{ apt_proxy_line }}'"
+  lineinfile: "dest=/etc/apt/apt.conf.d/01proxy create=yes line='{{ preconf_apt_proxy_line }}'"
 
 - name: update apt cache
   apt: update_cache=yes cache_valid_time=3600
@@ -35,19 +35,7 @@
 
 - name: add ssh keys for root
   authorized_key: user=root key="{{ item.key }}"
-  with_items: root_ssh_keys
-
-# - name: add key for strangeman
-#   authorized_key: user=root key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfO0uAvjepPMDyAOnUwok1jOwhjZlGLgeoGLDnKDznzbtSj58Ly+XELmuQbPKvxXv/bdv7w+/QiiuapF4rtW254BARUM9nDJnEOgwL/hlvo3bJdjVt5f/wJJnvUC9h02ClrrdSxElGusdMUgyD2ajfvMKP0Dd/naPe6/l22YkeBJfm7S+VX5PFPy7Je2xgOGRIIPfBSQHlk8Icyrlri0A7Dm+WZgYyil/vZ8ljOPO+96rqbnQ7Wgq9rQKp3p+J0I/f4qJDYIiyttzSlHhm77Hq9VXWl/wnQB2ERf8SPj9yXpHrhyXE1NC00dRzOno2q0FweZ0LQ9tOGpVnZNlySLtT strangeman"
-
-# - name: add key for baydakov
-#   authorized_key: user=root key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDi7LsenUy+c0CuLqMHzYEiv4r7WJzTWifJAG+9dJGJOGqYXYTolfWMYXoC9zx/oDYYPGgx/c2XfM6XX7higvlOe1R0XEYuan2n/p9X0+hIT/y26UUvEIV+lBWRD9qEXca6iOQhZk0kdKnctYfhAV87ZEsczVL6o+QAfEYN9vkkjr83zHcrT+1pqRzlMRe4rj6HI8+peS+63Y/eOW+e8GsrInXUD2GiUhxsVWKpCtndRn3QmGuWt0E6VBDwgORWcl9IDDkjN359YuRf+vERrFjbGYdUqVzcN7llbfw5o3cy2VdvnoBgXOx+E8Eh7lskkCcaURTEyqf5A4STZa8S3LZN baydakov"
-
-# - name: add key for vitalya  
-#   authorized_key: user=root key="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0EU27N49JJjLhEuLD82yO8wL3X2t/RSJMNZ/wYLDQitmiYugeRat6zZPC/z1Y0t4CPhxSADjymEQSfOrIsZ3n0dNPI1VjMKeE5vk+bPZgjJVmiSAz71DhAEPxe/k6viXZFsTB1BN8wFYsZr6S1m00UMt7wCf/28qw3yRAHVndUdgmZs65NuOtYB4J/o+P40L0AqvmKeMon1azq42trc49g+HQr53p6b0pr57/W08i6rDAOqJPQjyLctZSkbftImJ60ePYd0j7bQAExzwIskcywlX73fEnMCFVHhX5d8fNV9M167Nr6cS8sb9ZYK9jJVtHs1yNm0MvUE6VlTa+raQkw== vitalkadrug1"
-
-# - name: add second key for vitalya
-#   authorized_key: user=root key="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4Od8JZC8Q8KZPr2MrfwaZKxvlv/WakCBrUYmgwjFRnq7weFPOznW+6udoF1+mgy6ZSwMfKUH5fqfnQQsYMR3mU3bEzhQule76OU5rQmJv35TrjlrETlwP3MC4r6gEw5PA56KnpMdhh+Hswhfz1B26KSU3Rv7HC5/ntIxXgcfxZLmMsfNAcysRU+xShSv9En/4CrL8tMyEIzPo/9/gBNauQxTzrloBnyZDnnEPluUhi3aj1RENCyhXk1/e3pTszkIyT27eOo2LkN6tO5BnuGoHIyZ1566yVKrxN1At5oK4+KwRgK/CX1GVGBonWVk8P6ScI4lIX/Kt8Kcobz1hWi1Kw== vitalkadrug2"
+  with_items: preconf_root_ssh_keys
 
 - name: add locales
   lineinfile: dest=/etc/locale.gen line="ru_RU.UTF-8 UTF-8"
@@ -56,7 +44,7 @@
   - localegen
 
 - name: setup timezone
-  lineinfile: dest=/etc/timezone line="Asia/Vladivostok" regexp=".*/.*"
+  lineinfile: dest=/etc/timezone line="{{ preconf_timezone }}" regexp=".*/.*"
   notify:
   - update-timezone
 
