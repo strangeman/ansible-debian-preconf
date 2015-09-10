@@ -1,0 +1,20 @@
+---
+# - hosts: all
+#   tasks:
+#     - name: "Install ruby for busser"
+#       apt: pkg={{item}} state=latest
+#       with_items:
+#       - ruby
+#       - rubygems
+
+- hosts: all
+  roles:
+    - debian-preconf
+  vars:
+    preconf_apt_proxy_line: ""
+
+# - hosts: all
+#   roles:
+#     - debian-preconf
+#   vars:
+#     preconf_apt_proxy_line: ""
