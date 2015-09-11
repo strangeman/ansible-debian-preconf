@@ -27,7 +27,11 @@
   - tzdata
 
 - name: remove notneeded packages 
-  apt: pkg=network-manager state=absent
+  apt: pkg={{item}} state=absent
+  with_items: 
+    - network-manager
+    - puppet
+    - puppet-common
 
 - name: add history logging
   lineinfile: dest=/etc/profile.d/history.sh insertafter=EOF create=yes line="{{item}}"
