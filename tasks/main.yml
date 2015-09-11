@@ -30,16 +30,21 @@
   apt: pkg=network-manager state=absent
 
 - name: add history logging
-  lineinfile: dest=/etc/profile.d/history.sh create=yes line="export HISTTIMEFORMAT=\"%F %T \"" 
-  lineinfile: dest=/etc/profile.d/history.sh create=yes line="export HISTFILESIZE=9999"
+  lineinfile: dest=/etc/profile.d/history.sh insertafter=EOF create=yes line="{{item}}"
+  with_items: 
+    - export HISTFILESIZE=9999
+    - export HISTTIMEFORMAT=\"%F %T \"
+  
 
 - name: add ssh keys for root
   authorized_key: user=root key="{{ item.key }}"
   with_items: preconf_root_ssh_keys
 
 - name: add locales
-  lineinfile: dest=/etc/locale.gen line="ru_RU.UTF-8 UTF-8"
-  lineinfile: dest=/etc/locale.gen line="en_US.UTF-8 UTF-8"
+  lineinfile: dest=/etc/locale.gen insertafter=EOF line="{{item}}" regexp=".*{{item}}.*"
+  with_items: 
+    - ru_RU.UTF-8 UTF-8
+    - en_US.UTF-8 UTF-8
   notify:
   - localegen
 
